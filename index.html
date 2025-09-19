@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web开发知识卡片集 - Edugate项目学习指南</title>
+    <title>Web开发知识卡片集 v6 - Edugate项目学习指南</title>
     <style>
         * {
             margin: 0;
@@ -225,47 +225,54 @@
             background: #f8f9fa;
             color: #2d3748;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin: 20px 0;
-            font-family: 'Fira Code', 'Consolas', monospace;
-            font-size: 14px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace;
+            font-size: 15px;
             line-height: 1.6;
             overflow-x: auto;
-            white-space: pre-wrap;      /* 保持格式但允许换行 */
             position: relative;
             cursor: pointer;
+            border: 2px solid #e2e8f0;
+            white-space: pre-wrap;
+            word-break: break-word;
         }
 
         .code-example::before {
             content: attr(data-lang) " (点击复制)";
             position: absolute;
-            top: 5px;
-            right: 10px;
+            top: 10px;
+            right: 15px;
             background: #e2e8f0;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
             color: #4a5568;
+            font-weight: 600;
         }
 
         .code-example:hover {
-            background: #111827;
+            background: #ffffff;
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
         }
 
         .tip-box {
             background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             border-left: 4px solid #3b82f6;
-            padding: 15px;
+            padding: 16px;
             border-radius: 8px;
-            margin: 15px 0;
+            margin: 20px 0;
+            border: 1px solid #bfdbfe;
         }
 
         .warning-box {
             background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
             border-left: 4px solid #f59e0b;
-            padding: 15px;
+            padding: 16px;
             border-radius: 8px;
-            margin: 15px 0;
+            margin: 20px 0;
+            border: 1px solid #fcd34d;
         }
 
         .related-topics {
@@ -312,6 +319,11 @@
             .knowledge-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .code-example {
+                font-size: 14px;
+                padding: 15px;
+            }
         }
 
         ::-webkit-scrollbar {
@@ -331,7 +343,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Web开发知识卡片集</h1>
+            <h1>🚀 Web开发知识卡片集 v6</h1>
             <p>Edugate项目完整学习指南 - 从HTML基础到高级JavaScript，一站式学习所有核心概念</p>
         </div>
 
@@ -357,484 +369,6 @@
                     <div class="knowledge-item" data-difficulty="beginner">
                         <div class="item-header">
                             <div class="item-title">
-                                控制台调试
-                                <span class="difficulty-badge difficulty-beginner">初级</span>
-                            </div>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                        <div class="item-content">
-                            <p>使用浏览器开发者工具进行调试。</p>
-                            
-                            <div class="code-example" data-lang="javascript">
-// 基本日志输出
-console.log('这是普通信息');
-console.warn('这是警告信息');
-console.error('这是错误信息');
-
-// 格式化输出
-const student = { name: '张三', age: 18 };
-console.log('学生信息:', student);
-console.table([
-    { 姓名: '张三', 分数: 85 },
-    { 姓名: '李四', 分数: 92 }
-]);
-
-// 计时
-console.time('数据加载');
-// ... 一些操作
-console.timeEnd('数据加载'); // 输出耗时
-
-// 断点调试
-function calculateGrade(score) {
-    debugger; // 程序会在这里暂停
-    if (score >= 90) return 'A';
-    return 'B';
-}</div>
-
-                            <div class="tip-box">
-                                <strong>💡 快捷键：</strong>
-                                <ul>
-                                    <li><code>F12</code> - 打开开发者工具</li>
-                                    <li><code>F8</code> - 继续执行</li>
-                                    <li><code>F10</code> - 单步跳过</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="knowledge-item" data-difficulty="intermediate">
-                        <div class="item-header">
-                            <div class="item-title">
-                                异常处理
-                                <span class="difficulty-badge difficulty-intermediate">中级</span>
-                            </div>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                        <div class="item-content">
-                            <p>正确处理和恢复程序异常。</p>
-                            
-                            <div class="code-example" data-lang="javascript">
-// try-catch基本用法
-function safeParseJSON(jsonString) {
-    try {
-        const data = JSON.parse(jsonString);
-        return { success: true, data };
-    } catch (error) {
-        console.error('解析失败:', error.message);
-        return { success: false, error: error.message };
-    }
-}
-
-// 异步错误处理
-async function fetchData(url) {
-    try {
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-        
-        return await response.json();
-        
-    } catch (error) {
-        console.error('请求失败:', error);
-        throw error; // 重新抛出
-    }
-}
-
-// 全局错误处理
-window.addEventListener('error', (event) => {
-    console.error('全局错误:', event.error);
-});</div>
-
-                            <div class="warning-box">
-                                <strong>⚠️ 原则：</strong> 永远不要忽略错误，提供用户友好的错误信息。
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 浏览器存储 -->
-            <div class="knowledge-category">
-                <div class="category-header">
-                    <div class="category-icon">💾</div>
-                    <h3 class="category-title">浏览器存储</h3>
-                    <p class="category-desc">在客户端保存数据</p>
-                </div>
-                <div class="category-content">
-                    <div class="knowledge-item" data-difficulty="intermediate">
-                        <div class="item-header">
-                            <div class="item-title">
-                                localStorage使用
-                                <span class="difficulty-badge difficulty-intermediate">中级</span>
-                            </div>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                        <div class="item-content">
-                            <p>localStorage用于持久化存储数据。</p>
-                            
-                            <div class="code-example" data-lang="javascript">
-// 保存数据
-localStorage.setItem('username', '张三');
-
-// 保存对象（需要序列化）
-const userInfo = { name: '张三', class: '高三1班' };
-localStorage.setItem('userInfo', JSON.stringify(userInfo));
-
-// 获取数据
-const username = localStorage.getItem('username');
-
-// 获取对象（需要反序列化）
-const userInfoStr = localStorage.getItem('userInfo');
-const userInfo2 = userInfoStr ? JSON.parse(userInfoStr) : null;
-
-// 删除数据
-localStorage.removeItem('username');
-
-// 清空所有数据
-localStorage.clear();
-
-// 检查是否存在
-if (localStorage.getItem('username')) {
-    console.log('用户已登录');
-}</div>
-
-                            <div class="tip-box">
-                                <strong>💡 使用场景：</strong>
-                                <ul>
-                                    <li>用户设置和偏好</li>
-                                    <li>表单草稿数据</li>
-                                    <li>购物车内容</li>
-                                    <li>用户登录状态</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="knowledge-item" data-difficulty="intermediate">
-                        <div class="item-header">
-                            <div class="item-title">
-                                Cookie管理
-                                <span class="difficulty-badge difficulty-intermediate">中级</span>
-                            </div>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                        <div class="item-content">
-                            <p>Cookie用于在客户端和服务器间传递小量数据。</p>
-                            
-                            <div class="code-example" data-lang="javascript">
-// 设置Cookie
-function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
-}
-
-// 获取Cookie
-function getCookie(name) {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        let [cookieName, cookieValue] = cookie.trim().split('=');
-        if (cookieName === name) {
-            return cookieValue;
-        }
-    }
-    return null;
-}
-
-// 删除Cookie
-function deleteCookie(name) {
-    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-}
-
-// 使用示例
-setCookie('theme', 'dark', 30); // 保存30天
-const theme = getCookie('theme');
-deleteCookie('theme');</div>
-
-                            <div class="warning-box">
-                                <strong>⚠️ 限制：</strong> Cookie有大小限制（4KB），会随每个HTTP请求发送。
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 动画与交互 -->
-            <div class="knowledge-category">
-                <div class="category-header">
-                    <div class="category-icon">✨</div>
-                    <h3 class="category-title">动画与交互</h3>
-                    <p class="category-desc">提升用户体验的视觉效果</p>
-                </div>
-                <div class="category-content">
-                    <div class="knowledge-item" data-difficulty="intermediate">
-                        <div class="item-header">
-                            <div class="item-title">
-                                CSS动画
-                                <span class="difficulty-badge difficulty-intermediate">中级</span>
-                            </div>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                        <div class="item-content">
-                            <p>使用CSS创建流畅的动画效果。</p>
-                            
-                            <div class="code-example" data-lang="css">
-/* 过渡动画 */
-.button {
-    background: #667eea;
-    transition: all 0.3s ease;
-}
-
-.button:hover {
-    background: #5a6fd8;
-    transform: translateY(-2px);
-}
-
-/* 关键帧动画 */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-/* 加载动画 */
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.loading {
-    animation: spin 1s linear infinite;
-}</div>
-
-                            <div class="tip-box">
-                                <strong>💡 时间建议：</strong>
-                                <ul>
-                                    <li>微交互: 0.1-0.2s</li>
-                                    <li>按钮悬停: 0.2-0.3s</li>
-                                    <li>页面切换: 0.3-0.5s</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="knowledge-item" data-difficulty="advanced">
-                        <div class="item-header">
-                            <div class="item-title">
-                                JavaScript动画
-                                <span class="difficulty-badge difficulty-advanced">高级</span>
-                            </div>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                        <div class="item-content">
-                            <p>使用JavaScript创建复杂的动画效果。</p>
-                            
-                            <div class="code-example" data-lang="javascript">
-// 简单动画函数
-function animate(element, properties, duration = 300) {
-    const start = performance.now();
-    const startValues = {};
-    
-    // 获取起始值
-    for (let prop in properties) {
-        startValues[prop] = parseFloat(getComputedStyle(element)[prop]) || 0;
-    }
-    
-    function step(timestamp) {
-        const elapsed = timestamp - start;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // 应用动画值
-        for (let prop in properties) {
-            const startValue = startValues[prop];
-            const endValue = properties[prop];
-            const currentValue = startValue + (endValue - startValue) * progress;
-            element.style[prop] = currentValue + 'px';
-        }
-        
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
-    }
-    
-    requestAnimationFrame(step);
-}
-
-// 使用示例
-const button = document.querySelector('.animate-btn');
-animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
-
-                            <div class="warning-box">
-                                <strong>⚠️ 性能：</strong> 使用requestAnimationFrame，避免频繁修改DOM。
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // 搜索功能
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            const categories = document.querySelectorAll('.knowledge-category');
-            
-            categories.forEach(category => {
-                const items = category.querySelectorAll('.knowledge-item');
-                let hasVisibleItems = false;
-                
-                items.forEach(item => {
-                    const title = item.querySelector('.item-title').textContent.toLowerCase();
-                    const content = item.querySelector('.item-content').textContent.toLowerCase();
-                    
-                    if (query === '' || title.includes(query) || content.includes(query)) {
-                        item.style.display = 'block';
-                        hasVisibleItems = true;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                
-                category.style.display = hasVisibleItems ? 'block' : 'none';
-            });
-        });
-
-        // 难度筛选
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // 更新按钮状态
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const filter = this.dataset.filter;
-                const items = document.querySelectorAll('.knowledge-item');
-                
-                items.forEach(item => {
-                    if (filter === 'all' || item.dataset.difficulty === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                
-                // 隐藏没有可见项目的分类
-                const categories = document.querySelectorAll('.knowledge-category');
-                categories.forEach(category => {
-                    const visibleItems = category.querySelectorAll('.knowledge-item[style*="block"], .knowledge-item:not([style*="none"])');
-                    category.style.display = visibleItems.length > 0 ? 'block' : 'none';
-                });
-            });
-        });
-
-        // 知识点展开/收起
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.item-header')) {
-                const item = e.target.closest('.knowledge-item');
-                const content = item.querySelector('.item-content');
-                
-                if (content.classList.contains('expanded')) {
-                    content.classList.remove('expanded');
-                    item.classList.remove('expanded');
-                } else {
-                    // 先收起所有其他展开的项目
-                    document.querySelectorAll('.knowledge-item.expanded').forEach(expandedItem => {
-                        expandedItem.querySelector('.item-content').classList.remove('expanded');
-                        expandedItem.classList.remove('expanded');
-                    });
-                    
-                    // 展开当前项目
-                    content.classList.add('expanded');
-                    item.classList.add('expanded');
-                    
-                    // 滚动到可见区域
-                    setTimeout(() => {
-                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 300);
-                }
-            }
-        });
-
-        // 代码复制功能
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.code-example')) {
-                const codeBlock = e.target.closest('.code-example');
-                const code = codeBlock.textContent.replace(/\s*\(点击复制\)/, '');
-                
-                navigator.clipboard.writeText(code).then(() => {
-                    // 显示复制成功提示
-                    const originalBg = codeBlock.style.backgroundColor;
-                    codeBlock.style.backgroundColor = '#10b981';
-                    codeBlock.style.transition = 'background-color 0.3s ease';
-                    
-                    // 更新提示文字
-                    const originalLang = codeBlock.getAttribute('data-lang');
-                    codeBlock.setAttribute('data-lang', originalLang + ' ✅已复制');
-                    
-                    setTimeout(() => {
-                        codeBlock.style.backgroundColor = originalBg;
-                        codeBlock.setAttribute('data-lang', originalLang);
-                    }, 2000);
-                }).catch(err => {
-                    console.error('复制失败:', err);
-                    alert('复制失败，请手动复制代码');
-                });
-            }
-        });
-
-        // 快捷键支持
-        document.addEventListener('keydown', function(e) {
-            // Ctrl+K 打开搜索
-            if (e.ctrlKey && e.key === 'k') {
-                e.preventDefault();
-                document.getElementById('searchInput').focus();
-            }
-            
-            // ESC 清空搜索
-            if (e.key === 'Escape') {
-                document.getElementById('searchInput').value = '';
-                document.getElementById('searchInput').dispatchEvent(new Event('input'));
-                document.getElementById('searchInput').blur();
-            }
-        });
-
-        // 页面加载动画
-        document.addEventListener('DOMContentLoaded', function() {
-            const categories = document.querySelectorAll('.knowledge-category');
-            categories.forEach((category, index) => {
-                category.style.opacity = '0';
-                category.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    category.style.transition = 'all 0.6s ease';
-                    category.style.opacity = '1';
-                    category.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-
-            // 添加使用提示
-            setTimeout(() => {
-                if (!localStorage.getItem('knowledgeCardsTip')) {
-                    alert('💡 使用提示：\n\n✅ 点击知识点标题展开详细内容\n✅ 点击代码块可以一键复制\n✅ 使用搜索框快速查找内容\n✅ 按Ctrl+K快速聚焦搜索框');
-                    localStorage.setItem('knowledgeCardsTip', 'shown');
-                }
-            }, 2000);
-        });
-    </script>
-</body>
-</html>item-header">
-                            <div class="item-title">
                                 HTML5文档结构
                                 <span class="difficulty-badge difficulty-beginner">初级</span>
                             </div>
@@ -843,8 +377,7 @@ animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
                         <div class="item-content">
                             <p><strong>什么是HTML?</strong> HTML（HyperText Markup Language）是网页的基础语言，用来创建网页的结构。</p>
                             
-                            <div class="code-example" data-lang="html">
-&lt;!DOCTYPE html&gt;
+                            <div class="code-example" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -874,11 +407,15 @@ animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
                         <div class="item-content">
                             <p>表单用于收集用户输入，是网页交互的重要组成部分。</p>
                             
-                            <div class="code-example" data-lang="html">
-&lt;form id="student-form"&gt;
+                            <div class="code-example" data-lang="html">&lt;form id="student-form"&gt;
     &lt;div class="form-group"&gt;
         &lt;label for="student-id"&gt;学生ID&lt;/label&gt;
         &lt;input type="text" id="student-id" name="studentId" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="password"&gt;密码&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" required&gt;
     &lt;/div&gt;
     
     &lt;select name="term"&gt;
@@ -893,8 +430,9 @@ animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
                                 <strong>💡 关键属性：</strong>
                                 <ul>
                                     <li><code>required</code> - 必填字段</li>
-                                    <li><code>type</code> - 输入类型</li>
-                                    <li><code>name</code> - 用于获取数据</li>
+                                    <li><code>type</code> - 输入类型(text, password, email等)</li>
+                                    <li><code>name</code> - 用于获取表单数据</li>
+                                    <li><code>id</code> - 与label关联</li>
                                 </ul>
                             </div>
                         </div>
@@ -911,9 +449,13 @@ animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
                         <div class="item-content">
                             <p>语义化标签让HTML更有意义，提高SEO和无障碍性。</p>
                             
-                            <div class="code-example" data-lang="html">
-&lt;header&gt;
-    &lt;nav&gt;导航菜单&lt;/nav&gt;
+                            <div class="code-example" data-lang="html">&lt;header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#home"&gt;首页&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#about"&gt;关于&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
 &lt;/header&gt;
 
 &lt;main&gt;
@@ -924,11 +466,19 @@ animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
             &lt;p&gt;内容...&lt;/p&gt;
         &lt;/section&gt;
     &lt;/article&gt;
+    
+    &lt;aside&gt;
+        &lt;h3&gt;相关链接&lt;/h3&gt;
+    &lt;/aside&gt;
 &lt;/main&gt;
 
 &lt;footer&gt;
     &lt;p&gt;&copy; 2024 我的网站&lt;/p&gt;
 &lt;/footer&gt;</div>
+
+                            <div class="warning-box">
+                                <strong>⚠️ 注意：</strong> 不要仅仅因为样式而选择标签，要根据内容的语义选择合适的标签。
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -953,9 +503,9 @@ animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
                         <div class="item-content">
                             <p>CSS用于控制HTML元素的样式和布局。</p>
                             
-                            <div class="code-example" data-lang="css">
-/* 选择器 { 属性: 值; } */
+                            <div class="code-example" data-lang="css">/* 选择器 { 属性: 值; } */
 
+/* 类选择器 */
 .button {
     background-color: #667eea;
     color: white;
@@ -965,18 +515,27 @@ animate(button, { opacity: 0.5, translateY: -10 }, 200);</div>
     cursor: pointer;
 }
 
+/* ID选择器 */
 #header {
     background-color: #f8f9fa;
     padding: 20px;
 }
 
+/* 元素选择器 */
 h1 {
     font-size: 24px;
     color: #333;
+    margin-bottom: 10px;
+}
+
+/* 伪类选择器 */
+.button:hover {
+    background-color: #5a6fd8;
+    transform: translateY(-2px);
 }</div>
 
                             <div class="tip-box">
-                                <strong>💡 选择器优先级：</strong> ID > 类 > 元素
+                                <strong>💡 选择器优先级：</strong> ID选择器 > 类选择器 > 元素选择器 > 通配符选择器
                             </div>
                         </div>
                     </div>
@@ -990,19 +549,38 @@ h1 {
                             <span class="expand-icon">▼</span>
                         </div>
                         <div class="item-content">
-                            <p>Flexbox是现代CSS布局的核心技术。</p>
+                            <p>Flexbox是现代CSS布局的核心技术，用于创建灵活的布局。</p>
                             
-                            <div class="code-example" data-lang="css">
+                            <div class="code-example" data-lang="css">/* 父容器设置 */
 .flex-container {
     display: flex;
-    justify-content: center;  /* 水平居中 */
-    align-items: center;      /* 垂直居中 */
-    gap: 20px;                /* 间距 */
+    justify-content: center;    /* 水平居中 */
+    align-items: center;        /* 垂直居中 */
+    gap: 20px;                  /* 子元素间距 */
+    flex-wrap: wrap;            /* 允许换行 */
 }
 
+/* 子元素设置 */
 .flex-item {
-    flex: 1;                  /* 平均分配 */
-    min-width: 200px;
+    flex: 1;                    /* 平均分配空间 */
+    min-width: 200px;           /* 最小宽度 */
+}
+
+/* 常用布局 */
+.navigation {
+    display: flex;
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card-grid .card {
+    flex: 1 1 300px;           /* 弹性增长，最小300px */
 }</div>
 
                             <div class="tip-box">
@@ -1010,7 +588,8 @@ h1 {
                                 <ul>
                                     <li><code>justify-content</code> - 主轴对齐</li>
                                     <li><code>align-items</code> - 交叉轴对齐</li>
-                                    <li><code>flex</code> - 弹性增长</li>
+                                    <li><code>flex</code> - 弹性增长/收缩</li>
+                                    <li><code>gap</code> - 间距设置</li>
                                 </ul>
                             </div>
                         </div>
@@ -1027,25 +606,41 @@ h1 {
                         <div class="item-content">
                             <p>让网页在不同设备上都能良好显示。</p>
                             
-                            <div class="code-example" data-lang="css">
-/* 移动优先 */
+                            <div class="code-example" data-lang="css">/* 移动优先设计 - 基础样式 */
 .container {
     width: 100%;
     padding: 15px;
+    margin: 0 auto;
 }
 
-/* 平板 */
+/* 平板屏幕 */
 @media (min-width: 768px) {
     .container {
         max-width: 750px;
-        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* 桌面 */
+/* 桌面屏幕 */
 @media (min-width: 1024px) {
     .container {
         max-width: 1200px;
+        padding: 30px;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 大屏幕 */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
     }
 }</div>
 
@@ -1056,6 +651,61 @@ h1 {
                                     <li>Tablet: 768px - 1024px</li>
                                     <li>Desktop: > 1024px</li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-difficulty="advanced">
+                        <div class="item-header">
+                            <div class="item-title">
+                                CSS动画效果
+                                <span class="difficulty-badge difficulty-advanced">高级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>使用CSS创建流畅的动画效果。</p>
+                            
+                            <div class="code-example" data-lang="css">/* 过渡动画 */
+.button {
+    background-color: #667eea;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #5a6fd8;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* 关键帧动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* 加载动画 */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.loading {
+    animation: spin 1s linear infinite;
+}</div>
+
+                            <div class="warning-box">
+                                <strong>⚠️ 性能提示：</strong> 尽量使用transform和opacity属性做动画，避免频繁改变width、height等会触发重排的属性。
                             </div>
                         </div>
                     </div>
@@ -1081,28 +731,81 @@ h1 {
                         <div class="item-content">
                             <p>JavaScript中的基本数据存储和类型。</p>
                             
-                            <div class="code-example" data-lang="javascript">
-// 变量声明
+                            <div class="code-example" data-lang="javascript">// 变量声明
 let studentName = "张三";        // 字符串
-const maxScore = 100;           // 常量
-let age = 18;                   // 数字
-let isActive = true;            // 布尔值
-let scores = [85, 92, 78];      // 数组
-let student = {                 // 对象
-    name: "李四",
+const maxScore = 100;           // 常量数字
+var isActive = true;            // 布尔值
+
+// 数据类型
+let age = 18;                   // Number 数字
+let name = "李四";              // String 字符串
+let isStudent = true;           // Boolean 布尔
+let scores = [85, 92, 78];      // Array 数组
+let student = {                 // Object 对象
+    name: "王五",
+    age: 17,
     class: "高三1班"
 };
+let nothing = null;             // null 空值
+let notDefined;                 // undefined 未定义
 
-// 检查类型
-console.log(typeof age);        // "number"</div>
+// 检查数据类型
+console.log(typeof age);        // "number"
+console.log(typeof name);       // "string"
+console.log(Array.isArray(scores)); // true</div>
 
                             <div class="tip-box">
-                                <strong>💡 变量声明：</strong>
+                                <strong>💡 let vs const vs var：</strong>
                                 <ul>
-                                    <li><code>let</code> - 可重新赋值</li>
-                                    <li><code>const</code> - 不可重新赋值</li>
-                                    <li><code>var</code> - 老式声明（少用）</li>
+                                    <li><code>let</code> - 块级作用域，可重新赋值</li>
+                                    <li><code>const</code> - 块级作用域，不可重新赋值</li>
+                                    <li><code>var</code> - 函数作用域，有变量提升</li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-difficulty="beginner">
+                        <div class="item-header">
+                            <div class="item-title">
+                                函数定义和调用
+                                <span class="difficulty-badge difficulty-beginner">初级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>函数是可重复使用的代码块。</p>
+                            
+                            <div class="code-example" data-lang="javascript">// 函数声明
+function calculateGrade(score) {
+    if (score >= 90) return 'A';
+    if (score >= 80) return 'B';
+    if (score >= 70) return 'C';
+    return 'D';
+}
+
+// 箭头函数
+const calculateAverage = (scores) => {
+    const sum = scores.reduce((a, b) => a + b, 0);
+    return sum / scores.length;
+};
+
+// 函数调用
+let grade = calculateGrade(85);
+let average = calculateAverage([80, 90, 75]);
+
+// 带默认参数的函数
+function greetStudent(name = "同学", className = "未知班级") {
+    return `你好，${name}！来自${className}`;
+}
+
+// 立即执行函数
+(function() {
+    console.log("页面加载完成");
+})();</div>
+
+                            <div class="tip-box">
+                                <strong>💡 函数的好处：</strong> 代码复用、逻辑分离、易于测试和维护。
                             </div>
                         </div>
                     </div>
@@ -1116,31 +819,115 @@ console.log(typeof age);        // "number"</div>
                             <span class="expand-icon">▼</span>
                         </div>
                         <div class="item-content">
-                            <p>DOM让JavaScript可以操作HTML元素。</p>
+                            <p>DOM(Document Object Model)让JavaScript可以操作HTML元素。</p>
                             
-                            <div class="code-example" data-lang="javascript">
-// 获取元素
+                            <div class="code-example" data-lang="javascript">// 获取元素
 const button = document.getElementById('submit-btn');
 const form = document.querySelector('#student-form');
+const inputs = document.querySelectorAll('.form-input');
 
 // 修改内容
 button.textContent = '正在加载...';
+button.innerHTML = '<span>提交</span>';
 
 // 修改样式
 button.style.backgroundColor = '#667eea';
 button.classList.add('loading');
+button.classList.remove('active');
+button.classList.toggle('hidden');
 
-// 事件监听
-button.addEventListener('click', function() {
-    console.log('按钮被点击了！');
+// 修改属性
+button.setAttribute('disabled', true);
+button.removeAttribute('disabled');
+
+// 创建和插入元素
+const newDiv = document.createElement('div');
+newDiv.className = 'notification';
+newDiv.textContent = '操作成功！';
+document.body.appendChild(newDiv);
+
+// 删除元素
+setTimeout(() => {
+    newDiv.remove();
+}, 3000);</div>
+
+                            <div class="warning-box">
+                                <strong>⚠️ 性能提示：</strong> 频繁的DOM操作会影响性能，尽量批量操作或使用文档片段。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-difficulty="intermediate">
+                        <div class="item-header">
+                            <div class="item-title">
+                                事件处理
+                                <span class="difficulty-badge difficulty-intermediate">中级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>响应用户的交互行为。</p>
+                            
+                            <div class="code-example" data-lang="javascript">// 添加事件监听器
+const button = document.querySelector('.submit-btn');
+button.addEventListener('click', handleSubmit);
+
+// 事件处理函数
+function handleSubmit(event) {
+    event.preventDefault(); // 阻止默认行为
+    
+    // 获取表单数据
+    const formData = new FormData(event.target.form);
+    const studentId = formData.get('studentId');
+    
+    console.log('提交的学生ID:', studentId);
+}
+
+// 表单验证
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const inputs = this.querySelectorAll('input[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            input.classList.add('error');
+            isValid = false;
+        } else {
+            input.classList.remove('error');
+        }
+    });
+    
+    if (isValid) {
+        submitForm();
+    }
+});
+
+// 常用事件类型
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('页面加载完成');
+});
+
+window.addEventListener('resize', () => {
+    console.log('窗口大小改变');
+});
+
+input.addEventListener('focus', () => {
+    input.classList.add('focused');
+});
+
+input.addEventListener('blur', () => {
+    input.classList.remove('focused');
 });</div>
 
                             <div class="tip-box">
-                                <strong>💡 常用方法：</strong>
+                                <strong>💡 常用事件：</strong>
                                 <ul>
-                                    <li><code>getElementById()</code> - 通过ID获取</li>
-                                    <li><code>querySelector()</code> - CSS选择器获取</li>
-                                    <li><code>addEventListener()</code> - 添加事件</li>
+                                    <li><code>click</code> - 点击事件</li>
+                                    <li><code>submit</code> - 表单提交</li>
+                                    <li><code>change</code> - 值改变</li>
+                                    <li><code>keydown/keyup</code> - 键盘事件</li>
                                 </ul>
                             </div>
                         </div>
@@ -1157,26 +944,65 @@ button.addEventListener('click', function() {
                         <div class="item-content">
                             <p>处理耗时操作，避免阻塞页面。</p>
                             
-                            <div class="code-example" data-lang="javascript">
+                            <div class="code-example" data-lang="javascript">// Promise基础用法
+function checkStudentResults(studentId, pin) {
+    return new Promise((resolve, reject) => {
+        // 模拟API调用
+        setTimeout(() => {
+            if (studentId === 'EDU/2024/001' && pin === '123456') {
+                resolve({
+                    name: '张三',
+                    scores: [85, 92, 78, 88]
+                });
+            } else {
+                reject(new Error('学号或PIN码错误'));
+            }
+        }, 2000);
+    });
+}
+
 // async/await语法（推荐）
-async function checkResults() {
+async function handleResultCheck() {
     try {
-        const response = await fetch('/api/student/results');
-        const data = await response.json();
-        displayResults(data);
+        const button = document.querySelector('.check-btn');
+        button.textContent = '查询中...';
+        button.disabled = true;
+        
+        const result = await checkStudentResults('EDU/2024/001', '123456');
+        displayResults(result);
+        
     } catch (error) {
-        console.error('查询失败:', error);
+        showError(error.message);
+    } finally {
+        button.textContent = '查询成绩';
+        button.disabled = false;
     }
 }
 
-// Promise用法
-fetch('/api/data')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));</div>
+// Promise链式调用
+checkStudentResults('EDU/2024/001', '123456')
+    .then(result => {
+        console.log('查询成功:', result);
+        return calculateGPA(result.scores);
+    })
+    .then(gpa => {
+        console.log('GPA:', gpa);
+    })
+    .catch(error => {
+        console.error('查询失败:', error);
+    });
+
+// fetch API调用
+async function fetchStudentData(id) {
+    const response = await fetch(`/api/students/${id}`);
+    if (!response.ok) {
+        throw new Error('网络请求失败');
+    }
+    return response.json();
+}</div>
 
                             <div class="warning-box">
-                                <strong>⚠️ 注意：</strong> 异步操作要始终包含错误处理。
+                                <strong>⚠️ 错误处理：</strong> 异步操作要始终包含错误处理，避免未捕获的Promise拒绝。
                             </div>
                         </div>
                     </div>
@@ -1203,27 +1029,111 @@ fetch('/api/data')
                             <p><strong>API (Application Programming Interface)</strong> 是应用程序之间通信的接口。</p>
                             
                             <div class="tip-box">
-                                <strong>💡 简单理解：</strong> API就像餐厅的菜单，告诉你可以点什么菜，怎么点菜。
+                                <strong>💡 简单理解：</strong> API就像餐厅的菜单，告诉你可以点什么菜(请求什么数据)，怎么点菜(如何发送请求)。
                             </div>
 
-                            <div class="code-example" data-lang="javascript">
-// REST API的基本概念
+                            <div class="code-example" data-lang="javascript">// REST API的基本概念
 // GET - 获取数据
 // POST - 创建数据  
 // PUT - 更新数据
 // DELETE - 删除数据
 
+// 示例：学生成绩API
+const API_BASE = 'https://edugate-api.com';
+
 // 获取学生成绩
-fetch('/api/student/results', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        studentId: 'EDU/2024/001',
-        pin: '123456'
-    })
-});</div>
+// GET /api/student/results
+// 请求体: { studentId: "EDU/2024/001", pin: "123456" }
+
+// 创建新成绩
+// POST /api/teacher/results
+// 请求体: { studentId: "123", subject: "数学", score: 85 }
+
+// 更新成绩
+// PUT /api/teacher/results/456
+// 请求体: { score: 90 }
+
+// 删除成绩
+// DELETE /api/teacher/results/456</div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-difficulty="intermediate">
+                        <div class="item-header">
+                            <div class="item-title">
+                                Fetch API使用
+                                <span class="difficulty-badge difficulty-intermediate">中级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>Fetch是现代JavaScript发送网络请求的标准方法。</p>
+                            
+                            <div class="code-example" data-lang="javascript">// GET请求 - 获取数据
+async function getStudentResults(studentId, pin) {
+    try {
+        const response = await fetch('/api/student/results', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                registrationNumber: studentId,
+                accessPin: pin,
+                academicSession: '2024-2'
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data;
+        
+    } catch (error) {
+        console.error('请求失败:', error);
+        throw error;
+    }
+}
+
+// POST请求 - 提交数据
+async function submitResults(resultData) {
+    const response = await fetch('/api/teacher/results', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAuthToken()}`
+        },
+        body: JSON.stringify(resultData)
+    });
+    
+    return response.json();
+}
+
+// 使用示例
+async function checkResults() {
+    try {
+        showLoading(true);
+        const results = await getStudentResults('EDU/2024/001', '123456');
+        displayResults(results);
+    } catch (error) {
+        showError('查询失败: ' + error.message);
+    } finally {
+        showLoading(false);
+    }
+}</div>
+
+                            <div class="tip-box">
+                                <strong>💡 响应状态码：</strong>
+                                <ul>
+                                    <li><code>200</code> - 成功</li>
+                                    <li><code>400</code> - 请求错误</li>
+                                    <li><code>401</code> - 未授权</li>
+                                    <li><code>404</code> - 未找到</li>
+                                    <li><code>500</code> - 服务器错误</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -1238,36 +1148,77 @@ fetch('/api/student/results', {
                         <div class="item-content">
                             <p><strong>JWT (JSON Web Token)</strong> 是一种安全传输信息的标准。</p>
                             
-                            <div class="code-example" data-lang="javascript">
-// 登录获取Token
-async function login(username, password) {
-    const response = await fetch('/api/login', {
+                            <div class="code-example" data-lang="javascript">// JWT的结构：header.payload.signature
+// 示例: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjMiLCJyb2xlIjoidGVhY2hlciJ9.signature
+
+// 教师登录并获取JWT
+async function teacherLogin(teacherId, password) {
+    const response = await fetch('/api/teacher/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ teacherId, password })
     });
     
     const data = await response.json();
     
     if (data.success) {
-        // 保存Token
-        localStorage.setItem('token', data.token);
+        // 保存JWT到localStorage
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userInfo', JSON.stringify(data.user));
+        return data;
+    } else {
+        throw new Error(data.message);
     }
 }
 
-// 使用Token访问API
-async function getProtectedData() {
-    const token = localStorage.getItem('token');
+// 使用JWT进行API调用
+async function authenticatedRequest(url, options = {}) {
+    const token = localStorage.getItem('authToken');
     
-    const response = await fetch('/api/protected', {
+    const response = await fetch(url, {
+        ...options,
         headers: {
+            ...options.headers,
             'Authorization': `Bearer ${token}`
         }
     });
+    
+    if (response.status === 401) {
+        // Token过期，重新登录
+        logout();
+        window.location.href = '/login';
+        return;
+    }
+    
+    return response.json();
+}
+
+// 检查登录状态
+function isLoggedIn() {
+    const token = localStorage.getItem('authToken');
+    if (!token) return false;
+    
+    try {
+        // 简单的JWT解析（生产环境需要验证签名）
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const now = Date.now() / 1000;
+        
+        return payload.exp > now; // 检查是否过期
+    } catch {
+        return false;
+    }
+}
+
+// 登出
+function logout() {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userInfo');
 }</div>
 
                             <div class="warning-box">
-                                <strong>⚠️ 安全注意：</strong> JWT包含用户信息，不要存储敏感数据。
+                                <strong>⚠️ 安全注意：</strong> JWT包含用户信息，不要在其中存储敏感数据。始终在HTTPS下使用。
                             </div>
                         </div>
                     </div>
@@ -1281,15 +1232,20 @@ async function getProtectedData() {
                             <span class="expand-icon">▼</span>
                         </div>
                         <div class="item-content">
-                            <p><strong>CORS</strong> 是浏览器的安全机制，限制跨域请求。</p>
+                            <p><strong>CORS (Cross-Origin Resource Sharing)</strong> 是浏览器的安全机制。</p>
                             
                             <div class="tip-box">
-                                <strong>💡 什么是跨域：</strong> 当网页请求不同域名的API时，浏览器会阻止这个请求。
+                                <strong>💡 什么是跨域：</strong> 当网页(http://localhost:3000)请求不同域名的API(http://api.example.com)时，浏览器会阻止这个请求。
                             </div>
 
-                            <div class="code-example" data-lang="javascript">
-// 前端发送请求（需要后端配置CORS）
-fetch('https://api.example.com/data', {
+                            <div class="code-example" data-lang="javascript">// 前端处理CORS（实际需要后端配置）
+
+// 1. 使用代理（开发环境）
+// 在package.json中添加：
+// "proxy": "http://localhost:3001"
+
+// 2. 发送带凭证的请求
+fetch('/api/data', {
     method: 'GET',
     credentials: 'include', // 包含cookies
     headers: {
@@ -1297,10 +1253,29 @@ fetch('https://api.example.com/data', {
     }
 });
 
-// 常见解决方案：
-// 1. 后端设置CORS头
-// 2. 使用代理服务器
-// 3. JSONP（老方法，少用）</div>
+// 3. 预检请求（OPTIONS）
+// 对于复杂请求，浏览器会先发送OPTIONS请求
+async function uploadFile(file) {
+    // 这会触发预检请求
+    const response = await fetch('/api/upload', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            'X-Custom-Header': 'value'
+        },
+        body: file
+    });
+}</div>
+
+                            <div class="code-example" data-lang="javascript">// 后端CORS配置示例（Node.js/Express）
+const cors = require('cors');
+
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://yourdomain.com'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));</div>
                         </div>
                     </div>
                 </div>
@@ -1315,4 +1290,365 @@ fetch('https://api.example.com/data', {
                 </div>
                 <div class="category-content">
                     <div class="knowledge-item" data-difficulty="beginner">
-                        <div class="
+                        <div class="item-header">
+                            <div class="item-title">
+                                控制台调试
+                                <span class="difficulty-badge difficulty-beginner">初级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>使用浏览器开发者工具进行调试。</p>
+                            
+                            <div class="code-example" data-lang="javascript">// 基本日志输出
+console.log('这是普通信息');
+console.info('这是信息提示');
+console.warn('这是警告信息');
+console.error('这是错误信息');
+
+// 格式化输出
+const student = { name: '张三', age: 18, class: '高三1班' };
+console.log('学生信息:', student);
+console.table([
+    { 姓名: '张三', 分数: 85 },
+    { 姓名: '李四', 分数: 92 }
+]);
+
+// 计时
+console.time('数据加载');
+// ... 一些操作
+console.timeEnd('数据加载'); // 数据加载: 1.234ms
+
+// 断点调试
+function calculateGrade(score) {
+    debugger; // 程序会在这里暂停
+    if (score >= 90) return 'A';
+    if (score >= 80) return 'B';
+    return 'C';
+}
+
+// 条件断点
+function processStudents(students) {
+    students.forEach((student, index) => {
+        if (index === 5) debugger; // 只在第6个学生时暂停
+        console.log(`处理学生: ${student.name}`);
+    });
+}</div>
+
+                            <div class="tip-box">
+                                <strong>💡 开发者工具快捷键：</strong>
+                                <ul>
+                                    <li><code>F12</code> - 打开开发者工具</li>
+                                    <li><code>Ctrl+Shift+I</code> - 打开检查器</li>
+                                    <li><code>Ctrl+Shift+J</code> - 打开控制台</li>
+                                    <li><code>F8</code> - 继续执行</li>
+                                    <li><code>F10</code> - 单步跳过</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-difficulty="intermediate">
+                        <div class="item-header">
+                            <div class="item-title">
+                                异常捕获处理
+                                <span class="difficulty-badge difficulty-intermediate">中级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>正确处理和恢复程序异常。</p>
+                            
+                            <div class="code-example" data-lang="javascript">// try-catch基本用法
+function safeParseJSON(jsonString) {
+    try {
+        const data = JSON.parse(jsonString);
+        return { success: true, data };
+    } catch (error) {
+        console.error('JSON解析失败:', error.message);
+        return { success: false, error: error.message };
+    }
+}
+
+// 异步错误处理
+async function fetchStudentData(id) {
+    try {
+        const response = await fetch(`/api/students/${id}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return data;
+        
+    } catch (error) {
+        if (error.name === 'NetworkError') {
+            throw new Error('网络连接失败，请检查网络设置');
+        } else if (error.name === 'SyntaxError') {
+            throw new Error('服务器返回数据格式错误');
+        } else {
+            throw error;
+        }
+    }
+}
+
+// Promise错误处理
+fetchStudentData('123')
+    .then(data => {
+        displayStudentInfo(data);
+    })
+    .catch(error => {
+        showErrorMessage(error.message);
+    });
+
+// 全局错误处理
+window.addEventListener('error', (event) => {
+    console.error('全局错误:', {
+        message: event.message,
+        filename: event.filename,
+        line: event.lineno,
+        column: event.colno,
+        error: event.error
+    });
+    
+    // 向服务器报告错误
+    reportError({
+        type: 'javascript-error',
+        message: event.message,
+        stack: event.error?.stack,
+        userAgent: navigator.userAgent,
+        url: window.location.href
+    });
+});
+
+// 未捕获的Promise拒绝
+window.addEventListener('unhandledrejection', (event) => {
+    console.error('未处理的Promise拒绝:', event.reason);
+    event.preventDefault(); // 阻止默认错误输出
+    
+    showUserFriendlyError('操作失败，请稍后重试');
+});</div>
+
+                            <div class="warning-box">
+                                <strong>⚠️ 错误处理原则：</strong>
+                                <ul>
+                                    <li>永远不要忽略错误</li>
+                                    <li>提供用户友好的错误信息</li>
+                                    <li>记录详细的错误日志</li>
+                                    <li>优雅地降级功能</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 浏览器存储 -->
+            <div class="knowledge-category">
+                <div class="category-header">
+                    <div class="category-icon">💾</div>
+                    <h3 class="category-title">浏览器存储</h3>
+                    <p class="category-desc">在客户端保存数据</p>
+                </div>
+                <div class="category-content">
+                    <div class="knowledge-item" data-difficulty="intermediate">
+                        <div class="item-header">
+                            <div class="item-title">
+                                localStorage使用
+                                <span class="difficulty-badge difficulty-intermediate">中级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>localStorage用于持久化存储数据。</p>
+                            
+                            <div class="code-example" data-lang="javascript">// LocalStorage管理类
+class LocalStorageManager {
+    // 保存数据
+    static setItem(key, value) {
+        try {
+            const serializedValue = JSON.stringify(value);
+            localStorage.setItem(key, serializedValue);
+            return true;
+        } catch (error) {
+            console.error('localStorage保存失败:', error);
+            return false;
+        }
+    }
+    
+    // 获取数据
+    static getItem(key, defaultValue = null) {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : defaultValue;
+        } catch (error) {
+            console.error('localStorage读取失败:', error);
+            return defaultValue;
+        }
+    }
+    
+    // 删除数据
+    static removeItem(key) {
+        try {
+            localStorage.removeItem(key);
+            return true;
+        } catch (error) {
+            console.error('localStorage删除失败:', error);
+            return false;
+        }
+    }
+    
+    // 清空所有数据
+    static clear() {
+        localStorage.clear();
+    }
+}
+
+// 使用示例
+// 保存用户设置
+LocalStorageManager.setItem('userPreferences', {
+    theme: 'dark',
+    language: 'zh-CN',
+    notifications: true
+});
+
+// 获取用户设置
+const preferences = LocalStorageManager.getItem('userPreferences', {
+    theme: 'light',
+    language: 'zh-CN',
+    notifications: false
+});
+
+// 实际应用：保存表单数据
+function autoSaveFormData() {
+    const form = document.getElementById('student-form');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    // 自动保存表单数据
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            LocalStorageManager.setItem('draft-form-data', data);
+        });
+    });
+    
+    // 页面加载时恢复数据
+    const savedData = LocalStorageManager.getItem('draft-form-data');
+    if (savedData) {
+        Object.keys(savedData).forEach(key => {
+            const input = form.elements[key];
+            if (input) {
+                input.value = savedData[key];
+            }
+        });
+    }
+}</div>
+
+                            <div class="tip-box">
+                                <strong>💡 使用场景：</strong>
+                                <ul>
+                                    <li>用户设置和偏好</li>
+                                    <li>表单草稿数据</li>
+                                    <li>购物车内容</li>
+                                    <li>用户登录状态</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-difficulty="intermediate">
+                        <div class="item-header">
+                            <div class="item-title">
+                                Cookie管理
+                                <span class="difficulty-badge difficulty-intermediate">中级</span>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="item-content">
+                            <p>Cookie用于在客户端和服务器间传递小量数据。</p>
+                            
+                            <div class="code-example" data-lang="javascript">// Cookie管理工具类
+class CookieManager {
+    // 设置Cookie
+    static set(name, value, options = {}) {
+        const defaults = {
+            expires: null,  // 过期时间（天数）
+            path: '/',      // 路径
+            secure: false,  // 仅HTTPS
+            sameSite: 'Lax' // CSRF保护
+        };
+        
+        const config = { ...defaults, ...options };
+        let cookieString = `${name}=${encodeURIComponent(value)}`;
+        
+        if (config.expires) {
+            const date = new Date();
+            date.setTime(date.getTime() + (config.expires * 24 * 60 * 60 * 1000));
+            cookieString += `; expires=${date.toUTCString()}`;
+        }
+        
+        if (config.path) {
+            cookieString += `; path=${config.path}`;
+        }
+        
+        if (config.secure) {
+            cookieString += `; secure`;
+        }
+        
+        if (config.sameSite) {
+            cookieString += `; sameSite=${config.sameSite}`;
+        }
+        
+        document.cookie = cookieString;
+    }
+    
+    // 获取Cookie
+    static get(name) {
+        const cookies = document.cookie.split(';');
+        
+        for (let cookie of cookies) {
+            let [cookieName, cookieValue] = cookie.trim().split('=');
+            if (cookieName === name) {
+                return decodeURIComponent(cookieValue);
+            }
+        }
+        
+        return null;
+    }
+    
+    // 删除Cookie
+    static remove(name, path = '/') {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path};`;
+    }
+}
+
+// 使用示例
+// 保存用户偏好
+CookieManager.set('userTheme', 'dark', { expires: 365 });
+CookieManager.set('language', 'zh-CN', { expires: 365 });
+
+// 获取用户偏好
+const theme = CookieManager.get('userTheme') || 'light';
+const language = CookieManager.get('language') || 'en';</div>
+
+                            <div class="warning-box">
+                                <strong>⚠️ 限制：</strong> Cookie有大小限制（4KB），会随每个HTTP请求发送。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const categories = document.querySelectorAll('.knowledge-category');
+            
+            categories.forEach(category => {
+                const items = category.querySelectorAll('.knowledge-item');
+                let hasVisibleItems = false;
